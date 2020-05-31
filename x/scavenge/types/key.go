@@ -12,4 +12,7 @@ const (
 
   // QuerierRoute to be used for querierer msgs
 	QuerierRoute = ModuleName
+
+	ScavengePrefix = "sk-"
+	CommitPrefix   = "ck-"
 )
