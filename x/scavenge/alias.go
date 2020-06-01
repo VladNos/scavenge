@@ -12,7 +12,7 @@ const (
 	RouterKey         = types.RouterKey
 	StoreKey          = types.StoreKey
 	DefaultParamspace = types.DefaultParamspace
-	QueryParams       = types.QueryParams
+	//QueryParams       = types.QueryParams
 	QuerierRoute      = types.QuerierRoute
 )
 
@@ -28,6 +28,7 @@ var (
 
 	// variable aliases
 	ModuleCdc     = types.ModuleCdc
+	
 	NewMsgCreateScavenge = types.NewMsgCreateScavenge
 	NewMsgCommitSolution = types.NewMsgCommitSolution
 	NewMsgRevealSolution = types.NewMsgRevealSolution
