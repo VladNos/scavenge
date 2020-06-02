@@ -1,29 +1,28 @@
 package types
 
+import "strings"
 
-// Query endpoints supported by the scavenge querier
+// query endpoints supported by the nameservice Querier
 const (
-	// TODO: Describe query parameters, update <action> with your query
-	// Query<Action>    = "<action>"
 	QueryListScavenges = "list"
 	QueryGetScavenge   = "get"
 	QueryCommit        = "commit"
 )
 
+// // QueryResResolve Queries Result Payload for a resolve query
+// type QueryResResolve struct {
+// 	Value string `json:"value"`
+// }
 
-Below you will be able how to set your own queries:
+// // implement fmt.Stringer
+// func (r QueryResResolve) String() string {
+// 	return r.Value
+// }
+
+// QueryResScavenges Queries Result Payload for a names query
 type QueryResScavenges []string
-type QueryResList []string
-// QueryResList Queries Result Payload for a query
-
-
 
 // implement fmt.Stringer
-func (n QueryResList) String() string {
-	return strings.Join(n[:], "\n")
-}
-
 func (n QueryResScavenges) String() string {
 	return strings.Join(n[:], "\n")
-
-*/
+}
