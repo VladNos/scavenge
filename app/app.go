@@ -31,19 +31,13 @@ import (
 const appName = "app"
 
 var (
-	// TODO: rename your cli
-
-	// DefaultCLIHome default home directories for the application CLI
+	// default home directories for the application CLI
 	DefaultCLIHome = os.ExpandEnv("$HOME/.scavengeCLI")
-
-	// TODO: rename your daemon
 
 	// DefaultNodeHome sets the folder where the applcation data and configuration will be stored
 	DefaultNodeHome = os.ExpandEnv("$HOME/.scavengeD")
 
-	// ModuleBasics The module BasicManager is in charge of setting up basic,
-	// non-dependant module elements, such as codec registration
-	// and genesis verification.
+	// NewBasicManager is in charge of setting up basic module elemnets
 	ModuleBasics = module.NewBasicManager(
 		genutil.AppModuleBasic{},
 		auth.AppModuleBasic{},
@@ -53,11 +47,10 @@ var (
 		params.AppModuleBasic{},
 		slashing.AppModuleBasic{},
 		supply.AppModuleBasic{},
-		// TODO: Add your module(s) AppModuleBasic
+
 		scavenge.AppModuleBasic{},
 	)
-
-	// module account permissions
+	// account permissions
 	maccPerms = map[string][]string{
 		auth.FeeCollectorName:     nil,
 		distr.ModuleName:          nil,
@@ -66,8 +59,7 @@ var (
 	}
 )
 
-// MakeCodec creates the application codec. The codec is sealed before it is
-// returned.
+// MakeCodec generates the necessary codecs for Amino
 func MakeCodec() *codec.Codec {
 	var cdc = codec.New()
 
@@ -79,21 +71,18 @@ func MakeCodec() *codec.Codec {
 	return cdc.Seal()
 }
 
-// NewApp extended ABCI application
 type NewApp struct {
 	*bam.BaseApp
 	cdc *codec.Codec
 
-	invCheckPeriod uint
-
 	// keys to access the substores
 	keys  map[string]*sdk.KVStoreKey
-	tKeys map[string]*sdk.TransientStoreKey
+	tkeys map[string]*sdk.TransientStoreKey
 
 	// subspaces
 	subspaces map[string]params.Subspace
 
-	// keepers
+	// Keepers
 	accountKeeper  auth.AccountKeeper
 	bankKeeper     bank.Keeper
 	stakingKeeper  staking.Keeper
@@ -102,7 +91,6 @@ type NewApp struct {
 	supplyKeeper   supply.Keeper
 	paramsKeeper   params.Keeper
 	scavengeKeeper scavenge.Keeper
-	// TODO: Add your module(s)
 
 	// Module Manager
 	mm *module.Manager
@@ -114,7 +102,7 @@ type NewApp struct {
 // verify app interface at compile time
 var _ simapp.App = (*NewApp)(nil)
 
-// NewscavengeApp is a constructor function for scavengeApp
+// NewInitApp is a constructor function for scavengeApp
 func NewInitApp(logger log.Logger, db dbm.DB, traceStore io.Writer, loadLatest bool,
 	invCheckPeriod uint, baseAppOptions ...func(*bam.BaseApp)) *NewApp {
 

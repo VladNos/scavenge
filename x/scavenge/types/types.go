@@ -51,3 +51,31 @@ func (c Commit) String() string {
 		c.SolutionScavengerHash,
 	))
 }
+
+//guestions 
+
+type Question struct {
+	Creator      sdk.AccAddress `json:"creator" yaml:"creator"`           // address of the question creator
+	Description  string         `json:"description" yaml:"description"`   // description of the Question
+	QuestionID 	 string         `json:"questionID" yaml:"questionID"`     // questionID
+	Reward       sdk.Coins      `json:"reward" yaml:"reward"`             // reward of the scavenger
+	Company 	 string         `json:"company" yaml:"company"`             // answer hash of the scavenge
+	Phase 	 string         `json:"phase" yaml:"phase"`             // answer hash of the scavenge
+}
+
+// implement fmt.Stringer
+func (q Question) String() string {
+	return strings.TrimSpace(fmt.Sprintf(`Creator: %s
+	Description: %s
+	QuestionID: %s
+	Reward: %s
+	Company: %s
+	Phase: %s`,
+		s.Creator,
+		s.Description,
+		s.QuestionID,
+		s.Reward,
+		s.Company,
+		s.Phase,
+	))
+}
