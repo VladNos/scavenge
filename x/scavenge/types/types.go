@@ -52,7 +52,7 @@ func (c Commit) String() string {
 	))
 }
 
-//guestions 
+//Question type 
 
 type Question struct {
 	Creator      sdk.AccAddress `json:"creator" yaml:"creator"`           // address of the question creator
@@ -71,11 +71,33 @@ func (q Question) String() string {
 	Reward: %s
 	Company: %s
 	Phase: %s`,
-		s.Creator,
-		s.Description,
-		s.QuestionID,
-		s.Reward,
-		s.Company,
-		s.Phase,
+		q.Creator,
+		q.Description,
+		q.QuestionID,
+		q.Reward,
+		q.Company,
+		q.Phase,
+	))
+}
+
+
+//Answer type
+type Answer struct {
+	Worker    sdk.AccAddress `json:"worker" yaml:"worker"`       // address of the workers wallet
+	Description  string         `json:"description" yaml:"description"`   // description of the Question
+	QuestionID 	 string         `json:"questionID" yaml:"questionID"`     // questionID
+	Answer     string         `json:"answer" yaml:"answer"`         // Answer of the scavenge
+}
+
+// implement fmt.Stringer
+func (a Answer) String() string {
+	return strings.TrimSpace(fmt.Sprintf(`Worker: %s
+	Description: %s
+	QuestionID: %s
+	Answer: %s`,
+		a.Worker,
+		a.Description,
+		a.QuestionID,
+		a.Answer,
 	))
 }

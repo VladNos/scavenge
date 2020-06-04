@@ -15,4 +15,6 @@ const (
 
 	ScavengePrefix = "sk-"
 	CommitPrefix   = "ck-"
+	QuestionPrefix = "qx-"
+	AnswerPrefix   = "ax-"
 )
