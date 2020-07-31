@@ -57,10 +57,10 @@ func (c Commit) String() string {
 type Question struct {
 	Creator      sdk.AccAddress `json:"creator" yaml:"creator"`           // address of the question creator
 	Description  string         `json:"description" yaml:"description"`   // description of the Question
-	QuestionID 	 string         `json:"questionID" yaml:"questionID"`     // questionID
+	QuestionId 	 string         `json:"questionID" yaml:"questionID"`     // questionID
 	Reward       sdk.Coins      `json:"reward" yaml:"reward"`             // reward of the scavenger
 	Company 	 string         `json:"company" yaml:"company"`             // answer hash of the scavenge
-	Phase 	 string         `json:"phase" yaml:"phase"`             // answer hash of the scavenge
+	Phase 	 	 string         `json:"phase" yaml:"phase"`             // answer hash of the scavenge
 }
 
 // implement fmt.Stringer
@@ -73,7 +73,7 @@ func (q Question) String() string {
 	Phase: %s`,
 		q.Creator,
 		q.Description,
-		q.QuestionID,
+		q.QuestionId,
 		q.Reward,
 		q.Company,
 		q.Phase,
@@ -83,21 +83,51 @@ func (q Question) String() string {
 
 //Answer type
 type Answer struct {
-	Worker    sdk.AccAddress `json:"worker" yaml:"worker"`       // address of the workers wallet
-	Description  string         `json:"description" yaml:"description"`   // description of the Question
-	QuestionID 	 string         `json:"questionID" yaml:"questionID"`     // questionID
-	Answer     string         `json:"answer" yaml:"answer"`         // Answer of the scavenge
+	Worker    	 sdk.AccAddress 	`json:"worker" yaml:"worker"`       // address of the workers wallet
+	Responder	 string      		`json:"responder" yaml:"responder"`   // responder of the Question
+	Description  string             `json:"description" yaml:"description"`   // description of the Question
+	QuestionId 	 string             `json:"questionID" yaml:"questionID"`     // questionID
+	Answer       string           	`json:"answer" yaml:"answer"`         // Answer of the scavenge
 }
 
 // implement fmt.Stringer
 func (a Answer) String() string {
 	return strings.TrimSpace(fmt.Sprintf(`Worker: %s
+	Responder: %s
 	Description: %s
 	QuestionID: %s
 	Answer: %s`,
 		a.Worker,
+		a.Responder
 		a.Description,
-		a.QuestionID,
+		a.QuestionId,
 		a.Answer,
+	))
+}
+
+//Question type 
+
+type Responder struct {
+	FirstName  		string         `json:"description" yaml:"description"`   // description of the Question
+	LastName 	 	string         `json:"questionID" yaml:"questionID"`     // questionID
+	PhoneNumber     string      `json:"reward" yaml:"reward"`             // reward of the scavenger
+	Email 	 		string         `json:"company" yaml:"company"`             // answer hash of the scavenge
+	Location 	  	string         `json:"phase" yaml:"phase"`             // answer hash of the scavenge
+}
+
+// implement fmt.Stringer
+func (r Responder) String() string {
+	return strings.TrimSpace(fmt.Sprintf(`Creator: %s
+	Description: %s
+	QuestionID: %s
+	Reward: %s
+	Company: %s
+	Phase: %s`,
+		q.Creator,
+		q.Description,
+		q.QuestionID,
+		q.Reward,
+		q.Company,
+		q.Phase,
 	))
 }

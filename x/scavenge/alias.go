@@ -32,6 +32,8 @@ var (
 	NewMsgCreateScavenge = types.NewMsgCreateScavenge
 	NewMsgCommitSolution = types.NewMsgCommitSolution
 	NewMsgRevealSolution = types.NewMsgRevealSolution
+	NewMsgCreateQuestion = types.NewMsgCreateQuestion
+	NewMsgAnswerQuestion = types.NewMsgAnswerQuestion
 )
 
 type (
@@ -42,4 +44,6 @@ type (
 	MsgCreateScavenge = types.MsgCreateScavenge
 	MsgCommitSolution = types.MsgCommitSolution
 	MsgRevealSolution = types.MsgRevealSolution
+	MsgCreateQuestion = types.MsgCreateQuestion
+	MsgAnswerQuestion = types.MsgAnswerQuestion
 )
